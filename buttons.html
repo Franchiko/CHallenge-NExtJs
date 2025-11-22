@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons Examples</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+    const app = document.getElementById('app');
+
+    function Header({ title }) { 
+        return <h1>{title}</h1>;
+    }
+
+    function Button({ primary, secondary, danger }) {
+        const style = {
+            backgroundColor: primary ? 'blue' : secondary ? 'gray' : danger ? 'red' : 'lightgray',
+            color: 'white',
+            padding: '10px 20px',
+            margin: '5px 10px 3px 5px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer'
+        };
+        return <button style={style}>{primary || secondary || danger}</button>;
+    }
+
+    function HomePage(){
+        return (<div>
+            <Header title="Buttons styles" />
+            <Button primary="primary"/>
+            <Button secondary="secondary"/>
+            <Button danger="danger"/>
+            
+        </div>);
+    }
+    const root = ReactDOM.createRoot(app);
+    root.render(<HomePage />);
+    </script>
+</body>
+</html>

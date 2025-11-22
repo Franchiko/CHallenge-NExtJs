@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard NextJs</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" data-presets="react">
+        const app = document.getElementById('app');
+
+        function Header({ title }) {
+            console.log(title); // { title: "React" }  
+            return <h1>{title}</h1>;
+        }
+
+        function Block1(props) {
+            return (<h2>{props.block}</h2>);
+        }
+
+        function Block2({title_block}) {
+            return (<h2>{`Cool ${title_block}`}</h2>);
+        }
+
+        function createTitle(block3){
+            if (block3) {
+                return <h2>{`Awesome ${block3}`}</h2>;
+            } else {
+                return <h2>Default Block</h2>;
+            }
+        }
+
+        function Block3({block3}) {
+            return (
+                <h2>{createTitle(block3)}</h2>
+            );
+            
+        }
+
+        function Block4({ block4 }) {
+            return <h2>{block4 ? block4 : 'Default Title'}</h2>;
+        }
+ 
+        function Iteration() {
+            const items = ['Item 1', 'Item 2', 'Item 3'];
+            
+            // Event handler function includes setLikes to update state
+            function handleClick() {
+                setLikes( likes + 1)
+                alert('Liked!');
+            }
+
+            // Using useState to manage state in a functional component
+            const[likes, setLikes] = React.useState(0);
+            return (
+                <div>
+                    <Header title="Iteration Component" />
+                    <p>Iteration List</p>
+                    <ul>
+                        {items.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                    <button onClick={handleClick}>Like({likes})</button>
+                </div>
+            );
+        }
+        
+        function HomePage() {
+        return (<div>
+            <Header title="React" />
+            <Block1 block="Block 1" />
+            <Block2 title_block="Block 2" />
+            <Block3 block3="Block 3" />
+            <Block4 block4="" />
+            <Block4 block4="A new title" />
+            <Iteration />
+        </div>);
+        }
+
+        const root = ReactDOM.createRoot(app);
+        root.render(<HomePage />);
+    </script>
+</body>
+</html>
